@@ -1,0 +1,48 @@
+{
+  "name": "alifya-academy",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Alifya Academy — Learning Management & Educational Operations Platform",
+  "workspaces": [
+    "packages/*",
+    "backend",
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=20.11",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "bootstrap": "node scripts/bootstrap.mjs",
+    "dev": "concurrently -k -n api,web -c green,yellow \"npm run dev -w @alifya/api\" \"npm run dev -w @alifya/web\"",
+    "dev:backend": "npm run dev -w @alifya/api",
+    "dev:frontend": "npm run dev -w @alifya/web",
+    "build": "npm run build -w @alifya/api && npm run build -w @alifya/web",
+    "start": "npm run start -w @alifya/api",
+    "preview": "concurrently -k -n api,web -c green,yellow \"npm run start -w @alifya/api\" \"npm run preview -w @alifya/web\"",
+    "seed": "npm run seed -w @alifya/api --",
+    "seed:verify": "npm run seed:verify -w @alifya/api --",
+    "seed:demo": "npm run seed:demo -w @alifya/api --",
+    "admin:create": "npm run admin:create -w @alifya/api --",
+    "db:dev": "node scripts/dev-mongo.mjs",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "concurrently": "^9.1.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "mongodb-memory-server": "^10.4.3",
+    "prettier": "^3.4.2",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.18.2"
+  }
+}
